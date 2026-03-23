@@ -5,7 +5,7 @@
 // ============================================================
 
 // ⚠️ CONFIGURACIÓN - PEGA AQUÍ TU URL DE GOOGLE APPS SCRIPT
-const URL_API_CITAS = 'PEGA_AQUI_TU_URL_DEL_WEB_APP';
+const URL_API_CITAS = 'https://script.google.com/macros/s/AKfycbyK2jK89qGIwrVThhL22lmN-mHstD7yQdNfLGBxhMYU0DxsrTz94f-xWXzTnD79s6lp/exec';
 
 // Horarios disponibles del consultorio
 const HORARIOS_DISPONIBLES = [
