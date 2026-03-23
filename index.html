@@ -3,494 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sonrisa Norte v3.3 - Clínica Dental</title>
-    <meta name="description" content="Sistema de gestión de citas dentales - Sonrisa Norte. Agenda tu cita en línea de forma rápida y segura.">
-    
-    <!-- Tailwind CSS CDN -->
+    <title>Sonrisa Norte v3.4 - Clínica Dental</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
     <style>
-        .gradient-blue {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-        
-        .gradient-teal {
-            background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
-        }
-        
-        .btn-shine {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .btn-shine::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.5s;
-        }
-        
-        .btn-shine:hover::before {
-            left: 100%;
-        }
-        
-        .spinner {
-            border: 3px solid #f3f4f6;
-            border-top: 3px solid #3b82f6;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .modal-overlay {
-            background-color: rgba(0, 0, 0, 0.75);
-        }
-        
-        .alert {
-            padding: 1rem;
-            border-radius: 0.75rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-        }
-        
-        .alert-success {
-            background-color: #D1FAE5;
-            color: #065F46;
-            border: 1px solid #10B981;
-        }
-        
-        .alert-error {
-            background-color: #FEE2E2;
-            color: #991B1B;
-            border: 1px solid #EF4444;
-        }
-
-        .floating-social-container {
-            position: fixed;
-            bottom: 40px;
-            right: 40px;
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            align-items: flex-end;
-        }
-
-        .social-float {
-            width: 60px;
-            height: 60px;
-            border-radius: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #FFF;
-            font-size: 28px;
-            box-shadow: 2px 2px 15px rgba(0,0,0,0.3);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .social-float.whatsapp {
-            background-color: #25d366;
-            animation: pulse 2s infinite;
-        }
-
-        .social-float.whatsapp:hover {
-            background-color: #128C7E;
-            transform: scale(1.1);
-        }
-
-        .social-float.facebook, .social-float.instagram {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .social-float.facebook {
-            background-color: #1877f2;
-        }
-
-        .social-float.instagram {
-            background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
-        }
-
-        .social-float.disabled::after {
-            content: 'Próximamente';
-            position: absolute;
-            right: 70px;
-            background: #333;
-            color: white;
-            padding: 8px 12px;
-            border-radius: 8px;
-            font-size: 12px;
-            white-space: nowrap;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s;
-        }
-
-        .social-float.disabled:hover::after {
-            opacity: 1;
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-        }
-
-        .social-disabled {
-            opacity: 0.4;
-            cursor: not-allowed;
-            position: relative;
-        }
-
-        .social-disabled:hover::after {
-            content: 'Próximamente';
-            position: absolute;
-            bottom: 120%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #333;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 12px;
-            white-space: nowrap;
-            z-index: 1000;
-        }
-
-        @media screen and (max-width: 768px) {
-            .floating-social-container {
-                bottom: 20px;
-                right: 20px;
-                gap: 10px;
-            }
-            .social-float {
-                width: 50px;
-                height: 50px;
-                font-size: 24px;
-            }
-        }
+        .gradient-blue{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%)}.gradient-teal{background:linear-gradient(135deg,#0ea5e9 0%,#06b6d4 100%)}.btn-shine{position:relative;overflow:hidden}.btn-shine::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent);transition:left .5s}.btn-shine:hover::before{left:100%}.spinner{border:3px solid #f3f4f6;border-top:3px solid #3b82f6;border-radius:50%;width:40px;height:40px;animation:spin 1s linear infinite}@keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}.modal-overlay{background-color:rgba(0,0,0,0.75)}.alert{padding:1rem;border-radius:.75rem;margin-bottom:1rem}.alert-success{background-color:#D1FAE5;color:#065F46;border:1px solid #10B981}.alert-error{background-color:#FEE2E2;color:#991B1B;border:1px solid #EF4444}.floating-social-container{position:fixed;bottom:40px;right:40px;z-index:1000;display:flex;flex-direction:column;gap:15px}.social-float{width:60px;height:60px;border-radius:50px;display:flex;align-items:center;justify-content:center;color:#FFF;font-size:28px;box-shadow:2px 2px 15px rgba(0,0,0,0.3);transition:all .3s ease;cursor:pointer}.social-float.whatsapp{background-color:#25d366;animation:pulse 2s infinite}.social-float.whatsapp:hover{background-color:#128C7E;transform:scale(1.1)}.social-float.facebook,.social-float.instagram{opacity:.5;cursor:not-allowed}.social-float.facebook{background-color:#1877f2}.social-float.instagram{background:linear-gradient(45deg,#f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%)}.social-float.disabled::after{content:'Próximamente';position:absolute;right:70px;background:#333;color:white;padding:8px 12px;border-radius:8px;font-size:12px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .3s}.social-float.disabled:hover::after{opacity:1}@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,0.7)}70%{box-shadow:0 0 0 10px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}@media screen and (max-width:768px){.floating-social-container{bottom:20px;right:20px;gap:10px}.social-float{width:50px;height:50px;font-size:24px}}
     </style>
 </head>
-
 <body class="bg-gray-50">
-
-    <!-- Floating Social Buttons -->
     <div class="floating-social-container">
-        <div class="social-float facebook disabled" title="Facebook - Próximamente">
-            <i class="fab fa-facebook-f"></i>
-        </div>
-        <div class="social-float instagram disabled" title="Instagram - Próximamente">
-            <i class="fab fa-instagram"></i>
-        </div>
-        <a href="https://wa.me/5215582281999?text=Hola,%20me%20gustaría%20agendar%20una%20cita%20en%20Sonrisa%20Norte" 
-           target="_blank" 
-           class="social-float whatsapp"
-           title="Chatea por WhatsApp">
-            <i class="fab fa-whatsapp"></i>
-        </a>
+        <div class="social-float facebook disabled" title="Facebook - Próximamente"><i class="fab fa-facebook-f"></i></div>
+        <div class="social-float instagram disabled" title="Instagram - Próximamente"><i class="fab fa-instagram"></i></div>
+        <a href="https://wa.me/5215582281999" target="_blank" class="social-float whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
     </div>
-
-    <!-- NAVEGACIÓN -->
     <nav class="bg-white sticky top-0 z-50 border-b border-gray-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex items-center space-x-3">
                     <div class="text-4xl">🦷</div>
-                    <div>
-                        <h1 class="text-2xl font-bold text-gray-900">Sonrisa Norte</h1>
-                        <p class="text-xs text-gray-500">Clínica Dental v3.3</p>
-                    </div>
+                    <div><h1 class="text-2xl font-bold text-gray-900">Sonrisa Norte</h1><p class="text-xs text-gray-500">v3.4</p></div>
                 </div>
-                
                 <div class="hidden md:flex space-x-8">
                     <a href="#inicio" class="text-gray-700 hover:text-blue-600 font-semibold transition">Inicio</a>
                     <a href="#servicios" class="text-gray-700 hover:text-blue-600 font-semibold transition">Servicios</a>
                     <a href="#nosotros" class="text-gray-700 hover:text-blue-600 font-semibold transition">Nosotros</a>
                     <a href="#contacto" class="text-gray-700 hover:text-blue-600 font-semibold transition">Contacto</a>
                 </div>
-                
-                <button onclick="openAgendarCitaModal()" 
-                        class="px-6 py-2 gradient-blue text-white rounded-xl font-semibold hover:shadow-lg transition btn-shine">
-                    Agendar Cita
-                </button>
+                <button onclick="openAgendarCitaModal()" class="px-6 py-2 gradient-blue text-white rounded-xl font-semibold hover:shadow-lg transition btn-shine">Agendar Cita</button>
             </div>
         </div>
     </nav>
-
-    <!-- HERO -->
     <section id="inicio" class="py-20 gradient-blue text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div>
                     <h2 class="text-5xl font-bold mb-6">Tu Sonrisa es Nuestra Prioridad</h2>
-                    <p class="text-xl mb-8 text-blue-100">
-                        Servicios dentales de calidad con tecnología de punta y atención personalizada.
-                    </p>
+                    <p class="text-xl mb-8 text-blue-100">Servicios dentales de calidad con tecnología de punta y atención personalizada.</p>
                     <div class="flex flex-wrap gap-4">
-                        <button onclick="openAgendarCitaModal()" 
-                                class="px-8 py-4 bg-white text-blue-600 rounded-xl font-bold text-lg hover:shadow-2xl transition transform hover:scale-105">
-                            <i class="fas fa-calendar-check mr-2"></i>Agendar Cita Ahora
-                        </button>
-                        <a href="#servicios" 
-                           class="px-8 py-4 border-2 border-white text-white rounded-xl font-bold text-lg hover:bg-white hover:text-blue-600 transition">
-                            Ver Servicios
-                        </a>
+                        <button onclick="openAgendarCitaModal()" class="px-8 py-4 bg-white text-blue-600 rounded-xl font-bold text-lg hover:shadow-2xl transition transform hover:scale-105"><i class="fas fa-calendar-check mr-2"></i>Agendar Cita Ahora</button>
+                        <a href="#servicios" class="px-8 py-4 border-2 border-white text-white rounded-xl font-bold text-lg hover:bg-white hover:text-blue-600 transition">Ver Servicios</a>
                     </div>
                 </div>
-                
                 <div class="hidden md:block">
                     <div class="bg-white/10 backdrop-blur-lg p-8 rounded-3xl">
                         <div class="grid grid-cols-2 gap-6">
-                            <div class="text-center p-6 bg-white/20 rounded-2xl">
-                                <div class="text-4xl mb-2">😁</div>
-                                <div class="text-3xl font-bold">500+</div>
-                                <div class="text-sm text-blue-100">Pacientes Felices</div>
-                            </div>
-                            <div class="text-center p-6 bg-white/20 rounded-2xl">
-                                <div class="text-4xl mb-2">⭐</div>
-                                <div class="text-3xl font-bold">4.9</div>
-                                <div class="text-sm text-blue-100">Calificación</div>
-                            </div>
-                            <div class="text-center p-6 bg-white/20 rounded-2xl">
-                                <div class="text-4xl mb-2">👨‍⚕️</div>
-                                <div class="text-3xl font-bold">5</div>
-                                <div class="text-sm text-blue-100">Especialistas</div>
-                            </div>
-                            <div class="text-center p-6 bg-white/20 rounded-2xl">
-                                <div class="text-4xl mb-2">🏆</div>
-                                <div class="text-3xl font-bold">10+</div>
-                                <div class="text-sm text-blue-100">Años Experiencia</div>
-                            </div>
+                            <div class="text-center p-6 bg-white/20 rounded-2xl"><div class="text-4xl mb-2">😁</div><div class="text-3xl font-bold">500+</div><div class="text-sm text-blue-100">Pacientes Felices</div></div>
+                            <div class="text-center p-6 bg-white/20 rounded-2xl"><div class="text-4xl mb-2">⭐</div><div class="text-3xl font-bold">4.9</div><div class="text-sm text-blue-100">Calificación</div></div>
+                            <div class="text-center p-6 bg-white/20 rounded-2xl"><div class="text-4xl mb-2">👨‍⚕️</div><div class="text-3xl font-bold">5</div><div class="text-sm text-blue-100">Especialistas</div></div>
+                            <div class="text-center p-6 bg-white/20 rounded-2xl"><div class="text-4xl mb-2">🏆</div><div class="text-3xl font-bold">10+</div><div class="text-sm text-blue-100">Años</div></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- SERVICIOS -->
     <section id="servicios" class="py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-bold text-gray-900 mb-4">Nuestros Servicios</h2>
                 <p class="text-xl text-gray-600">Soluciones dentales completas para toda la familia</p>
             </div>
-            
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition transform hover:scale-105">
-                    <div class="w-16 h-16 gradient-blue rounded-2xl flex items-center justify-center mb-6">
-                        <i class="fas fa-tooth text-white text-3xl"></i>
-                    </div>
+                    <div class="w-16 h-16 gradient-blue rounded-2xl flex items-center justify-center mb-6"><i class="fas fa-tooth text-white text-3xl"></i></div>
                     <h3 class="text-2xl font-bold text-gray-900 mb-3">Limpieza Dental</h3>
                     <p class="text-gray-600 mb-4">Limpieza profunda y prevención de enfermedades bucales.</p>
                     <div class="text-3xl font-bold gradient-blue bg-clip-text text-transparent">$500</div>
                 </div>
-                
                 <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition transform hover:scale-105">
-                    <div class="w-16 h-16 gradient-teal rounded-2xl flex items-center justify-center mb-6">
-                        <i class="fas fa-smile-beam text-white text-3xl"></i>
-                    </div>
+                    <div class="w-16 h-16 gradient-teal rounded-2xl flex items-center justify-center mb-6"><i class="fas fa-smile-beam text-white text-3xl"></i></div>
                     <h3 class="text-2xl font-bold text-gray-900 mb-3">Blanqueamiento</h3>
-                    <p class="text-gray-600 mb-4">Blanqueamiento dental profesional con resultados inmediatos.</p>
+                    <p class="text-gray-600 mb-4">Blanqueamiento dental profesional.</p>
                     <div class="text-3xl font-bold gradient-teal bg-clip-text text-transparent">$2,000</div>
                 </div>
-                
                 <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition transform hover:scale-105">
-                    <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mb-6">
-                        <i class="fas fa-teeth text-white text-3xl"></i>
-                    </div>
+                    <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mb-6"><i class="fas fa-teeth text-white text-3xl"></i></div>
                     <h3 class="text-2xl font-bold text-gray-900 mb-3">Ortodoncia</h3>
-                    <p class="text-gray-600 mb-4">Brackets y alineadores invisibles para una sonrisa perfecta.</p>
+                    <p class="text-gray-600 mb-4">Brackets y alineadores invisibles.</p>
                     <div class="text-3xl font-bold bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">Desde $300</div>
                 </div>
-                
                 <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition transform hover:scale-105">
-                    <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mb-6">
-                        <i class="fas fa-heartbeat text-white text-3xl"></i>
-                    </div>
+                    <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mb-6"><i class="fas fa-heartbeat text-white text-3xl"></i></div>
                     <h3 class="text-2xl font-bold text-gray-900 mb-3">Endodoncia</h3>
-                    <p class="text-gray-600 mb-4">Tratamiento de conductos con tecnología de última generación.</p>
+                    <p class="text-gray-600 mb-4">Tratamiento de conductos.</p>
                     <div class="text-3xl font-bold bg-gradient-to-r from-green-500 to-emerald-500 bg-clip-text text-transparent">$2,500</div>
                 </div>
-                
                 <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition transform hover:scale-105">
-                    <div class="w-16 h-16 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-2xl flex items-center justify-center mb-6">
-                        <i class="fas fa-star text-white text-3xl"></i>
-                    </div>
+                    <div class="w-16 h-16 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-2xl flex items-center justify-center mb-6"><i class="fas fa-star text-white text-3xl"></i></div>
                     <h3 class="text-2xl font-bold text-gray-900 mb-3">Resinas</h3>
-                    <p class="text-gray-600 mb-4">Restauraciones estéticas del color natural de tus dientes.</p>
+                    <p class="text-gray-600 mb-4">Restauraciones estéticas.</p>
                     <div class="text-3xl font-bold bg-gradient-to-r from-yellow-500 to-orange-500 bg-clip-text text-transparent">$700</div>
                 </div>
-                
                 <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition transform hover:scale-105">
-                    <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-pink-500 rounded-2xl flex items-center justify-center mb-6">
-                        <i class="fas fa-crown text-white text-3xl"></i>
-                    </div>
+                    <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-pink-500 rounded-2xl flex items-center justify-center mb-6"><i class="fas fa-crown text-white text-3xl"></i></div>
                     <h3 class="text-2xl font-bold text-gray-900 mb-3">Coronas</h3>
-                    <p class="text-gray-600 mb-4">Coronas dentales de porcelana y zirconio de alta calidad.</p>
+                    <p class="text-gray-600 mb-4">Coronas de porcelana y zirconio.</p>
                     <div class="text-3xl font-bold bg-gradient-to-r from-red-500 to-pink-500 bg-clip-text text-transparent">$3,500</div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- NOSOTROS -->
     <section id="nosotros" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
                 <h2 class="text-4xl font-bold text-gray-900 mb-4">¿Por qué Elegirnos?</h2>
                 <p class="text-xl text-gray-600">Tecnología, experiencia y atención personalizada</p>
             </div>
-            
             <div class="grid md:grid-cols-2 gap-12">
                 <div class="space-y-6">
                     <div class="flex items-start">
-                        <div class="w-12 h-12 gradient-blue rounded-xl flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-check text-white"></i>
-                        </div>
-                        <div class="ml-4">
-                            <h3 class="font-bold text-gray-900 mb-1">Tecnología de Punta</h3>
-                            <p class="text-gray-600">Equipos modernos y técnicas innovadoras para mejores resultados.</p>
-                        </div>
+                        <div class="w-12 h-12 gradient-blue rounded-xl flex items-center justify-center flex-shrink-0"><i class="fas fa-check text-white"></i></div>
+                        <div class="ml-4"><h3 class="font-bold text-gray-900 mb-1">Tecnología de Punta</h3><p class="text-gray-600">Equipos modernos y técnicas innovadoras.</p></div>
                     </div>
-                    
                     <div class="flex items-start">
-                        <div class="w-12 h-12 gradient-teal rounded-xl flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-user-md text-white"></i>
-                        </div>
-                        <div class="ml-4">
-                            <h3 class="font-bold text-gray-900 mb-1">Profesionales Certificados</h3>
-                            <p class="text-gray-600">Equipo de dentistas especializados con amplia experiencia.</p>
-                        </div>
+                        <div class="w-12 h-12 gradient-teal rounded-xl flex items-center justify-center flex-shrink-0"><i class="fas fa-user-md text-white"></i></div>
+                        <div class="ml-4"><h3 class="font-bold text-gray-900 mb-1">Profesionales Certificados</h3><p class="text-gray-600">Equipo de dentistas especializados.</p></div>
                     </div>
-                    
                     <div class="flex items-start">
-                        <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-heart text-white"></i>
-                        </div>
-                        <div class="ml-4">
-                            <h3 class="font-bold text-gray-900 mb-1">Atención Personalizada</h3>
-                            <p class="text-gray-600">Cada paciente es único y merece un trato especial.</p>
-                        </div>
+                        <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center flex-shrink-0"><i class="fas fa-heart text-white"></i></div>
+                        <div class="ml-4"><h3 class="font-bold text-gray-900 mb-1">Atención Personalizada</h3><p class="text-gray-600">Cada paciente es único.</p></div>
                     </div>
-                    
                     <div class="flex items-start">
-                        <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-shield-alt text-white"></i>
-                        </div>
-                        <div class="ml-4">
-                            <h3 class="font-bold text-gray-900 mb-1">Higiene y Seguridad</h3>
-                            <p class="text-gray-600">Protocolos estrictos de esterilización y bioseguridad.</p>
-                        </div>
+                        <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center flex-shrink-0"><i class="fas fa-shield-alt text-white"></i></div>
+                        <div class="ml-4"><h3 class="font-bold text-gray-900 mb-1">Higiene y Seguridad</h3><p class="text-gray-600">Protocolos estrictos.</p></div>
                     </div>
                 </div>
-                
                 <div class="grid grid-cols-2 gap-6">
-                    <div class="bg-gradient-to-br from-blue-500 to-purple-500 p-8 rounded-3xl text-white">
-                        <div class="text-5xl mb-4">🏥</div>
-                        <div class="text-4xl font-bold mb-2">10+</div>
-                        <div class="text-blue-100">Años de Experiencia</div>
-                    </div>
-                    <div class="bg-gradient-to-br from-teal-500 to-cyan-500 p-8 rounded-3xl text-white">
-                        <div class="text-5xl mb-4">😊</div>
-                        <div class="text-4xl font-bold mb-2">500+</div>
-                        <div class="text-teal-100">Sonrisas Creadas</div>
-                    </div>
-                    <div class="bg-gradient-to-br from-purple-500 to-pink-500 p-8 rounded-3xl text-white">
-                        <div class="text-5xl mb-4">⭐</div>
-                        <div class="text-4xl font-bold mb-2">4.9</div>
-                        <div class="text-purple-100">Calificación</div>
-                    </div>
-                    <div class="bg-gradient-to-br from-green-500 to-emerald-500 p-8 rounded-3xl text-white">
-                        <div class="text-5xl mb-4">🎯</div>
-                        <div class="text-4xl font-bold mb-2">100%</div>
-                        <div class="text-green-100">Satisfacción</div>
-                    </div>
+                    <div class="bg-gradient-to-br from-blue-500 to-purple-500 p-8 rounded-3xl text-white"><div class="text-5xl mb-4">🏥</div><div class="text-4xl font-bold mb-2">10+</div><div class="text-blue-100">Años</div></div>
+                    <div class="bg-gradient-to-br from-teal-500 to-cyan-500 p-8 rounded-3xl text-white"><div class="text-5xl mb-4">😊</div><div class="text-4xl font-bold mb-2">500+</div><div class="text-teal-100">Sonrisas</div></div>
+                    <div class="bg-gradient-to-br from-purple-500 to-pink-500 p-8 rounded-3xl text-white"><div class="text-5xl mb-4">⭐</div><div class="text-4xl font-bold mb-2">4.9</div><div class="text-purple-100">Rating</div></div>
+                    <div class="bg-gradient-to-br from-green-500 to-emerald-500 p-8 rounded-3xl text-white"><div class="text-5xl mb-4">🎯</div><div class="text-4xl font-bold mb-2">100%</div><div class="text-green-100">Satisfacción</div></div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- CONTACTO -->
     <section id="contacto" class="py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
                 <h2 class="text-4xl font-bold text-gray-900 mb-4">Contáctanos</h2>
                 <p class="text-xl text-gray-600">¿Tienes preguntas? Estamos aquí para ayudarte</p>
             </div>
-            
             <div class="grid md:grid-cols-2 gap-12">
                 <div class="space-y-6">
                     <div class="flex items-start">
-                        <div class="w-12 h-12 gradient-blue rounded-xl flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-map-marker-alt text-white"></i>
-                        </div>
-                        <div class="ml-4">
-                            <h3 class="font-bold text-gray-900 mb-1">Dirección</h3>
-                            <p class="text-gray-600">Av. Principal #123, Querétaro, México</p>
-                        </div>
+                        <div class="w-12 h-12 gradient-blue rounded-xl flex items-center justify-center flex-shrink-0"><i class="fas fa-map-marker-alt text-white"></i></div>
+                        <div class="ml-4"><h3 class="font-bold text-gray-900 mb-1">Dirección</h3><p class="text-gray-600">Av. Principal #123, Querétaro, México</p></div>
                     </div>
-                    
                     <div class="flex items-start">
-                        <div class="w-12 h-12 gradient-teal rounded-xl flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-phone text-white"></i>
-                        </div>
-                        <div class="ml-4">
-                            <h3 class="font-bold text-gray-900 mb-1">Teléfono</h3>
-                            <p class="text-gray-600">+52 442 123 4567</p>
-                        </div>
+                        <div class="w-12 h-12 gradient-teal rounded-xl flex items-center justify-center flex-shrink-0"><i class="fas fa-phone text-white"></i></div>
+                        <div class="ml-4"><h3 class="font-bold text-gray-900 mb-1">Teléfono</h3><p class="text-gray-600">+52 442 123 4567</p></div>
                     </div>
-                    
                     <div class="flex items-start">
-                        <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-envelope text-white"></i>
-                        </div>
-                        <div class="ml-4">
-                            <h3 class="font-bold text-gray-900 mb-1">Email</h3>
-                            <p class="text-gray-600">contacto@sonrisanorte.com</p>
-                        </div>
+                        <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center flex-shrink-0"><i class="fas fa-envelope text-white"></i></div>
+                        <div class="ml-4"><h3 class="font-bold text-gray-900 mb-1">Email</h3><p class="text-gray-600">contacto@sonrisanorte.com</p></div>
                     </div>
-                    
                     <div class="flex items-start">
-                        <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-clock text-white"></i>
-                        </div>
-                        <div class="ml-4">
-                            <h3 class="font-bold text-gray-900 mb-1">Horario</h3>
-                            <p class="text-gray-600">Lun - Vie: 9:00 AM - 7:00 PM</p>
-                            <p class="text-gray-600">Sáb: 9:00 AM - 2:00 PM</p>
-                        </div>
-                    </div>
-
-                    <div class="flex items-start">
-                        <div class="w-12 h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-xl flex items-center justify-center flex-shrink-0">
-                            <i class="fab fa-whatsapp text-white"></i>
-                        </div>
-                        <div class="ml-4">
-                            <h3 class="font-bold text-gray-900 mb-1">WhatsApp</h3>
-                            <a href="https://wa.me/5215582281999" target="_blank" class="text-green-600 hover:text-green-700 font-semibold">
-                                +52 55 8228 1999
-                            </a>
-                        </div>
+                        <div class="w-12 h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-xl flex items-center justify-center flex-shrink-0"><i class="fab fa-whatsapp text-white"></i></div>
+                        <div class="ml-4"><h3 class="font-bold text-gray-900 mb-1">WhatsApp</h3><a href="https://wa.me/5215582281999" target="_blank" class="text-green-600 hover:text-green-700 font-semibold">+52 55 8228 1999</a></div>
                     </div>
                 </div>
-                
                 <div class="bg-white p-8 rounded-2xl shadow-lg">
                     <form action="https://formsubmit.co/emilio.jaimes.mtz2@gmail.com" method="POST" class="space-y-6">
                         <input type="hidden" name="_subject" value="Nuevo mensaje de contacto - Sonrisa Norte">
@@ -498,431 +169,76 @@
                         <input type="hidden" name="_template" value="box">
                         <input type="hidden" name="_next" value="https://emilio-jaimes02.github.io/sonrisa-norte/?sent=true">
                         <input type="text" name="_honey" style="display:none">
-                        
-                        <div id="formSuccessMessage" class="hidden">
-                            <div class="alert alert-success text-center">
-                                <i class="fas fa-check-circle text-3xl mb-3"></i>
-                                <h3 class="font-bold text-lg mb-2">¡Mensaje Enviado!</h3>
-                                <p>Gracias por contactarnos. Te responderemos pronto.</p>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <label class="block text-sm font-bold text-gray-900 mb-2">Nombre Completo *</label>
-                            <input type="text" name="nombre" required 
-                                   class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition"
-                                   placeholder="Tu nombre completo">
-                        </div>
-                        
-                        <div>
-                            <label class="block text-sm font-bold text-gray-900 mb-2">Email *</label>
-                            <input type="email" name="email" required 
-                                   class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition"
-                                   placeholder="tu@email.com">
-                        </div>
-                        
-                        <div>
-                            <label class="block text-sm font-bold text-gray-900 mb-2">Teléfono</label>
-                            <input type="tel" name="telefono" 
-                                   class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition"
-                                   placeholder="442 123 4567">
-                        </div>
-                        
-                        <div>
-                            <label class="block text-sm font-bold text-gray-900 mb-2">Mensaje *</label>
-                            <textarea rows="4" name="mensaje" required 
-                                      class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition"
-                                      placeholder="Escribe tu mensaje aquí..."></textarea>
-                        </div>
-                        
-                        <button type="submit" 
-                                class="w-full gradient-blue text-white py-4 rounded-xl font-semibold text-lg hover:shadow-xl transition transform hover:scale-105 btn-shine">
-                            <i class="fas fa-paper-plane mr-2"></i>Enviar Mensaje
-                        </button>
+                        <div id="formSuccessMessage" class="hidden"><div class="alert alert-success text-center"><i class="fas fa-check-circle text-3xl mb-3"></i><h3 class="font-bold text-lg mb-2">¡Mensaje Enviado!</h3><p>Gracias por contactarnos.</p></div></div>
+                        <div><label class="block text-sm font-bold text-gray-900 mb-2">Nombre Completo *</label><input type="text" name="nombre" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition" placeholder="Tu nombre completo"></div>
+                        <div><label class="block text-sm font-bold text-gray-900 mb-2">Email *</label><input type="email" name="email" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition" placeholder="tu@email.com"></div>
+                        <div><label class="block text-sm font-bold text-gray-900 mb-2">Teléfono</label><input type="tel" name="telefono" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition" placeholder="442 123 4567"></div>
+                        <div><label class="block text-sm font-bold text-gray-900 mb-2">Mensaje *</label><textarea rows="4" name="mensaje" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition" placeholder="Escribe tu mensaje..."></textarea></div>
+                        <button type="submit" class="w-full gradient-blue text-white py-4 rounded-xl font-semibold text-lg hover:shadow-xl transition transform hover:scale-105 btn-shine"><i class="fas fa-paper-plane mr-2"></i>Enviar Mensaje</button>
                     </form>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- FOOTER -->
     <footer class="bg-gray-900 text-white py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid md:grid-cols-4 gap-8 mb-8">
-                <div>
-                    <div class="flex items-center space-x-3 mb-4">
-                        <div class="text-3xl">🦷</div>
-                        <div>
-                            <h3 class="text-xl font-bold">Sonrisa Norte</h3>
-                            <p class="text-sm text-gray-400">Clínica Dental v3.3</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-400 text-sm">
-                        Tu sonrisa es nuestra prioridad. Tecnología y profesionalismo al servicio de tu salud dental.
-                    </p>
-                </div>
-                
-                <div>
-                    <h3 class="font-bold mb-4">Enlaces Rápidos</h3>
-                    <ul class="space-y-2 text-gray-400 text-sm">
-                        <li><a href="#inicio" class="hover:text-white transition">Inicio</a></li>
-                        <li><a href="#servicios" class="hover:text-white transition">Servicios</a></li>
-                        <li><a href="#nosotros" class="hover:text-white transition">Nosotros</a></li>
-                        <li><a href="#contacto" class="hover:text-white transition">Contacto</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h3 class="font-bold mb-4">Servicios</h3>
-                    <ul class="space-y-2 text-gray-400 text-sm">
-                        <li>Limpieza Dental</li>
-                        <li>Blanqueamiento</li>
-                        <li>Ortodoncia</li>
-                        <li>Endodoncia</li>
-                        <li>Resinas</li>
-                        <li>Coronas</li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h3 class="font-bold mb-4">Contacto</h3>
-                    <ul class="space-y-2 text-gray-400 text-sm">
-                        <li><i class="fas fa-map-marker-alt mr-2"></i>Querétaro, México</li>
-                        <li><i class="fas fa-phone mr-2"></i>+52 442 123 4567</li>
-                        <li><i class="fas fa-envelope mr-2"></i>contacto@sonrisanorte.com</li>
-                    </ul>
-                </div>
+                <div><div class="flex items-center space-x-3 mb-4"><div class="text-3xl">🦷</div><div><h3 class="text-xl font-bold">Sonrisa Norte</h3><p class="text-sm text-gray-400">v3.4</p></div></div><p class="text-gray-400 text-sm">Tu sonrisa es nuestra prioridad.</p></div>
+                <div><h3 class="font-bold mb-4">Enlaces</h3><ul class="space-y-2 text-gray-400 text-sm"><li><a href="#inicio" class="hover:text-white transition">Inicio</a></li><li><a href="#servicios" class="hover:text-white transition">Servicios</a></li><li><a href="#nosotros" class="hover:text-white transition">Nosotros</a></li><li><a href="#contacto" class="hover:text-white transition">Contacto</a></li></ul></div>
+                <div><h3 class="font-bold mb-4">Servicios</h3><ul class="space-y-2 text-gray-400 text-sm"><li>Limpieza Dental</li><li>Blanqueamiento</li><li>Ortodoncia</li><li>Endodoncia</li><li>Resinas</li><li>Coronas</li></ul></div>
+                <div><h3 class="font-bold mb-4">Contacto</h3><ul class="space-y-2 text-gray-400 text-sm"><li><i class="fas fa-map-marker-alt mr-2"></i>Querétaro, México</li><li><i class="fas fa-phone mr-2"></i>+52 442 123 4567</li><li><i class="fas fa-envelope mr-2"></i>contacto@sonrisanorte.com</li></ul></div>
             </div>
-            
             <div class="border-t border-gray-800 pt-8 text-center text-gray-400 text-sm">
                 <p>&copy; 2026 Sonrisa Norte. Todos los derechos reservados.</p>
                 <p class="mt-2">Desarrollado por TecMilenio - Proyecto DevOps</p>
             </div>
         </div>
     </footer>
-
-    <!-- MODAL: AGENDAR CITA -->
     <div id="modalAgendarCita" class="hidden fixed inset-0 z-50 overflow-y-auto modal-overlay">
         <div class="flex items-center justify-center min-h-screen px-4">
             <div class="bg-white rounded-3xl shadow-2xl max-w-3xl w-full p-8">
                 <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-3xl font-bold text-gray-900">
-                        <i class="fas fa-calendar-check text-blue-500 mr-2"></i>Agendar Cita
-                    </h2>
-                    <button onclick="closeModalAgendarCita()" class="text-gray-500 hover:text-gray-700 text-2xl">
-                        <i class="fas fa-times"></i>
-                    </button>
+                    <h2 class="text-3xl font-bold text-gray-900"><i class="fas fa-calendar-check text-blue-500 mr-2"></i>Agendar Cita</h2>
+                    <button onclick="closeModalAgendarCita()" class="text-gray-500 hover:text-gray-700 text-2xl"><i class="fas fa-times"></i></button>
                 </div>
-                
                 <div id="mensajeCita"></div>
-                
                 <form id="formularioCitaIndependiente" class="space-y-6">
                     <div class="grid md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-sm font-bold mb-2">Nombre Completo *</label>
-                            <input type="text" name="nombreCita" required 
-                                   class="w-full px-4 py-3 rounded-xl border focus:border-blue-500 outline-none">
-                        </div>
-                        
-                        <div>
-                            <label class="block text-sm font-bold mb-2">Email *</label>
-                            <input type="email" name="emailCita" required 
-                                   class="w-full px-4 py-3 rounded-xl border focus:border-blue-500 outline-none">
-                        </div>
-                        
-                        <div>
-                            <label class="block text-sm font-bold mb-2">Teléfono *</label>
-                            <input type="tel" name="telefonoCita" required 
-                                   class="w-full px-4 py-3 rounded-xl border focus:border-blue-500 outline-none">
-                        </div>
-                        
-                        <div>
-                            <label class="block text-sm font-bold mb-2">Servicio *</label>
-                            <select name="servicioCita" required 
-                                    class="w-full px-4 py-3 rounded-xl border focus:border-blue-500 outline-none">
-                                <option value="">Selecciona un servicio</option>
-                                <option value="Limpieza Dental - $500">Limpieza Dental - $500</option>
-                                <option value="Blanqueamiento - $2,000">Blanqueamiento - $2,000</option>
-                                <option value="Endodoncia - $2,500">Endodoncia - $2,500</option>
-                                <option value="Ortodoncia - Desde $300">Ortodoncia - Desde $300</option>
-                                <option value="Resina Dental - $700">Resina Dental - $700</option>
-                                <option value="Corona Dental - $3,500">Corona Dental - $3,500</option>
-                            </select>
-                        </div>
+                        <div><label class="block text-sm font-bold mb-2">Nombre Completo *</label><input type="text" name="nombreCita" required class="w-full px-4 py-3 rounded-xl border focus:border-blue-500 outline-none"></div>
+                        <div><label class="block text-sm font-bold mb-2">Email *</label><input type="email" name="emailCita" required class="w-full px-4 py-3 rounded-xl border focus:border-blue-500 outline-none"></div>
+                        <div><label class="block text-sm font-bold mb-2">Teléfono *</label><input type="tel" name="telefonoCita" required class="w-full px-4 py-3 rounded-xl border focus:border-blue-500 outline-none"></div>
+                        <div><label class="block text-sm font-bold mb-2">Servicio *</label><select name="servicioCita" required class="w-full px-4 py-3 rounded-xl border focus:border-blue-500 outline-none"><option value="">Selecciona un servicio</option><option value="Limpieza Dental - $500">Limpieza Dental - $500</option><option value="Blanqueamiento - $2,000">Blanqueamiento - $2,000</option><option value="Endodoncia - $2,500">Endodoncia - $2,500</option><option value="Ortodoncia - Desde $300">Ortodoncia - Desde $300</option><option value="Resina Dental - $700">Resina Dental - $700</option><option value="Corona Dental - $3,500">Corona Dental - $3,500</option></select></div>
                     </div>
-                    
-                    <div>
-                        <label class="block text-sm font-bold mb-2">Fecha de la Cita *</label>
-                        <input type="date" id="fechaCitaInput" name="fechaCitaInput" required 
-                               class="w-full px-4 py-3 rounded-xl border focus:border-blue-500 outline-none">
-                    </div>
-                    
-                    <div>
-                        <label class="block text-sm font-bold mb-3">Horario Disponible *</label>
-                        <div class="grid grid-cols-3 gap-3" id="horariosContainerCita">
-                            <div class="col-span-3 text-center text-gray-500 py-4">
-                                <i class="fas fa-calendar-day text-3xl mb-2"></i>
-                                <p>Selecciona una fecha</p>
-                            </div>
-                        </div>
-                        <input type="hidden" id="horarioCitaSeleccionado" name="horarioCitaSeleccionado" required>
-                    </div>
-                    
-                    <div>
-                        <label class="block text-sm font-bold mb-2">Motivo (Opcional)</label>
-                        <textarea name="motivoCita" rows="3" 
-                                  class="w-full px-4 py-3 rounded-xl border focus:border-blue-500 outline-none"></textarea>
-                    </div>
-                    
-                    <button type="submit" 
-                            class="w-full bg-blue-500 text-white py-4 rounded-xl font-semibold text-lg hover:bg-blue-600 transition">
-                        <i class="fas fa-check mr-2"></i>Confirmar Cita
-                    </button>
+                    <div><label class="block text-sm font-bold mb-2">Fecha de la Cita *</label><input type="date" id="fechaCitaInput" name="fechaCitaInput" required class="w-full px-4 py-3 rounded-xl border focus:border-blue-500 outline-none"></div>
+                    <div><label class="block text-sm font-bold mb-3">Horario Disponible *</label><div class="grid grid-cols-3 gap-3" id="horariosContainerCita"><div class="col-span-3 text-center text-gray-500 py-4"><i class="fas fa-calendar-day text-3xl mb-2"></i><p>Selecciona una fecha</p></div></div><input type="hidden" id="horarioCitaSeleccionado" name="horarioCitaSeleccionado" required></div>
+                    <div><label class="block text-sm font-bold mb-2">Motivo (Opcional)</label><textarea name="motivoCita" rows="3" class="w-full px-4 py-3 rounded-xl border focus:border-blue-500 outline-none"></textarea></div>
+                    <button type="submit" class="w-full bg-blue-500 text-white py-4 rounded-xl font-semibold text-lg hover:bg-blue-600 transition"><i class="fas fa-check mr-2"></i>Confirmar Cita</button>
                 </form>
             </div>
         </div>
     </div>
-
-    <!-- JAVASCRIPT -->
-    <script>
-// Sistema Principal
-function openAgendarCitaModal() {
-    document.getElementById('modalAgendarCita').classList.remove('hidden');
-}
-
-function closeModalAgendarCita() {
-    document.getElementById('modalAgendarCita').classList.add('hidden');
-    const form = document.getElementById('formularioCitaIndependiente');
-    if (form) form.reset();
-    const contenedor = document.getElementById('horariosContainerCita');
-    if (contenedor) contenedor.innerHTML = '<div class="col-span-3 text-center text-gray-500 py-4"><i class="fas fa-calendar-day text-3xl mb-2"></i><p>Selecciona una fecha</p></div>';
-}
-
-// FormSubmit success handler
-const urlParams = new URLSearchParams(window.location.search);
-if (urlParams.get('sent') === 'true') {
-    const successDiv = document.getElementById('formSuccessMessage');
-    if (successDiv) {
-        successDiv.classList.remove('hidden');
-        setTimeout(() => {
-            document.getElementById('contacto').scrollIntoView({ behavior: 'smooth' });
-        }, 500);
-        window.history.replaceState({}, document.title, window.location.pathname);
-        setTimeout(() => successDiv.classList.add('hidden'), 8000);
-    }
-}
-
-// Smooth scroll
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-});
-
-// Navbar shadow
-const nav = document.querySelector('nav');
-window.addEventListener('scroll', () => {
-    nav.classList.toggle('shadow-lg', window.pageYOffset > 100);
-});
-
-console.log('🦷 Sonrisa Norte v3.3 - Sistema principal cargado');
-    </script>
-
-    <!-- SCRIPT CITAS INDEPENDIENTE -->
-    <script>
-const URL_API_CITAS = 'https://script.google.com/macros/s/AKfycbyK2jK89qGIwrVThhL22lmN-mHstD7yQdNfLGBxhMYU0DxsrTz94f-xWXzTnD79s6lp/exec';
-
-const HORARIOS_DISPONIBLES = ['09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00', '17:30', '18:00'];
-
-async function llamarAPICitas(accion, datos = {}) {
-    try {
-        datos.accion = accion;
-        console.log('📤 API Citas:', accion, datos);
-        const respuesta = await fetch(URL_API_CITAS, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(datos),
-            redirect: 'follow'
-        });
-        if (!respuesta.ok) throw new Error('HTTP ' + respuesta.status);
-        const resultado = await respuesta.json();
-        console.log('✅ Respuesta:', resultado);
-        return resultado;
-    } catch (error) {
-        console.error('❌ Error:', error);
-        return { exito: false, mensaje: 'Error: ' + error.message };
-    }
-}
-
-function validarEmail(email) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
-
-function obtenerInfoNavegador() {
-    const ua = navigator.userAgent;
-    if (ua.indexOf('Chrome') > -1) return 'Chrome';
-    if (ua.indexOf('Safari') > -1) return 'Safari';
-    if (ua.indexOf('Firefox') > -1) return 'Firefox';
-    if (ua.indexOf('Edge') > -1) return 'Edge';
-    return 'Otro';
-}
-
-function mostrarMensajeCita(mensaje, tipo = 'exito') {
-    const elemento = document.getElementById('mensajeCita');
-    if (!elemento) return;
-    const claseAlerta = tipo === 'exito' ? 'alert-success' : 'alert-error';
-    const icono = tipo === 'exito' ? 'check-circle' : 'exclamation-circle';
-    elemento.innerHTML = `<div class="alert ${claseAlerta}"><i class="fas fa-${icono} mr-2"></i>${mensaje}</div>`;
-    setTimeout(() => elemento.innerHTML = '', 5000);
-}
-
-function formatearFecha(fecha) {
-    const date = new Date(fecha + 'T00:00:00');
-    return date.toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric' });
-}
-
-async function consultarHorariosDisponibles(fecha) {
-    const resultado = await llamarAPICitas('consultarHorariosOcupados', { fecha });
-    if (resultado.exito) {
-        const ocupados = resultado.horarios || [];
-        const libres = HORARIOS_DISPONIBLES.filter(h => !ocupados.includes(h));
-        return { exito: true, fecha, horariosOcupados: ocupados, horariosLibres: libres, totalLibres: libres.length };
-    }
-    return resultado;
-}
-
-function seleccionarHorarioCita(horario, boton) {
-    document.querySelectorAll('.horario-btn:not(.disabled)').forEach(btn => {
-        btn.classList.remove('selected', 'border-blue-500', 'bg-blue-500', 'text-white');
-        btn.classList.add('border-gray-300', 'text-gray-700');
-    });
-    boton.classList.add('selected', 'border-blue-500', 'bg-blue-500', 'text-white');
-    boton.classList.remove('border-gray-300', 'text-gray-700');
-    const campo = document.getElementById('horarioCitaSeleccionado');
-    if (campo) campo.value = horario;
-}
-
-function renderizarHorariosCita(fecha) {
-    const contenedor = document.getElementById('horariosContainerCita');
-    if (!contenedor) return;
-    
-    if (!fecha) {
-        contenedor.innerHTML = '<div class="col-span-3 text-center text-gray-500 py-4"><i class="fas fa-calendar-day text-3xl mb-2"></i><p>Selecciona una fecha</p></div>';
-        return;
-    }
-    
-    contenedor.innerHTML = '<div class="col-span-3 text-center py-4"><div class="spinner mx-auto"></div><p class="text-gray-600 mt-3">Consultando...</p></div>';
-    
-    consultarHorariosDisponibles(fecha).then(resultado => {
-        if (!resultado.exito) {
-            contenedor.innerHTML = `<div class="col-span-3 text-center text-red-500 py-4"><i class="fas fa-exclamation-triangle text-3xl mb-2"></i><p>${resultado.mensaje}</p></div>`;
-            return;
-        }
-        
-        const ocupados = resultado.horariosOcupados || [];
-        contenedor.innerHTML = '';
-        
-        HORARIOS_DISPONIBLES.forEach(horario => {
-            const ocupado = ocupados.includes(horario);
-            const boton = document.createElement('button');
-            boton.type = 'button';
-            
-            if (ocupado) {
-                boton.className = 'horario-btn disabled px-4 py-3 border-2 border-red-200 rounded-xl text-sm font-semibold text-red-400 bg-red-50 cursor-not-allowed';
-                boton.innerHTML = `${horario}<br><span class="text-xs">Ocupado</span>`;
-                boton.disabled = true;
-            } else {
-                boton.className = 'horario-btn px-4 py-3 border-2 border-gray-300 rounded-xl text-sm font-semibold text-gray-700 hover:border-blue-500 hover:bg-blue-50 transition';
-                boton.innerHTML = `${horario}<br><span class="text-xs text-green-600">Disponible</span>`;
-                boton.onclick = () => seleccionarHorarioCita(horario, boton);
-            }
-            contenedor.appendChild(boton);
-        });
-        
-        const resumen = document.createElement('div');
-        resumen.className = 'col-span-3 mt-4 p-3 bg-blue-50 rounded-xl text-sm text-center';
-        resumen.innerHTML = `<i class="fas fa-info-circle text-blue-500 mr-2"></i><span class="font-semibold">${resultado.totalLibres}</span> horarios disponibles`;
-        contenedor.appendChild(resumen);
-    });
-}
-
-async function guardarCitaIndependiente(form) {
-    const datos = {
-        nombre: form.nombreCita.value.trim(),
-        email: form.emailCita.value.trim(),
-        telefono: form.telefonoCita.value.trim(),
-        servicio: form.servicioCita.value,
-        fechaCita: form.fechaCitaInput.value,
-        horarioCita: form.horarioCitaSeleccionado.value,
-        motivo: form.motivoCita.value.trim(),
-        navegador: obtenerInfoNavegador()
-    };
-    
-    if (!datos.nombre || !datos.email || !datos.telefono) return { exito: false, mensaje: 'Completa nombre, email y teléfono' };
-    if (!datos.servicio || !datos.fechaCita || !datos.horarioCita) return { exito: false, mensaje: 'Selecciona servicio, fecha y horario' };
-    if (!validarEmail(datos.email)) return { exito: false, mensaje: 'Email inválido' };
-    
-    return await llamarAPICitas('guardarCita', datos);
-}
-
-async function manejarEnvioCitaIndependiente(e) {
-    e.preventDefault();
-    const form = e.target;
-    const btn = form.querySelector('button[type="submit"]');
-    
-    if (btn) {
-        btn.disabled = true;
-        btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Guardando...';
-    }
-    
-    const resultado = await guardarCitaIndependiente(form);
-    
-    if (btn) {
-        btn.disabled = false;
-        btn.innerHTML = '<i class="fas fa-check mr-2"></i>Confirmar Cita';
-    }
-    
-    if (resultado.exito) {
-        const d = resultado.datos;
-        mostrarMensajeCita(`✅ <strong>¡Cita agendada!</strong><br>📅 ${formatearFecha(d.fechaCita)}<br>🕐 ${d.horarioCita}<br>📧 ${d.email}<br><small>ID: ${d.id}</small>`, 'exito');
-        setTimeout(() => {
-            form.reset();
-            document.getElementById('horariosContainerCita').innerHTML = '';
-            closeModalAgendarCita();
-        }, 3000);
-    } else {
-        mostrarMensajeCita('❌ ' + resultado.mensaje, 'error');
-    }
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('🦷 Sistema Citas Independiente v3.3 cargado');
-    
-    const fechaCitaInput = document.getElementById('fechaCitaInput');
-    if (fechaCitaInput) {
-        fechaCitaInput.min = new Date().toISOString().split('T')[0];
-        fechaCitaInput.addEventListener('change', function() {
-            renderizarHorariosCita(this.value);
-            const campo = document.getElementById('horarioCitaSeleccionado');
-            if (campo) campo.value = '';
-        });
-    }
-    
-    const formCita = document.getElementById('formularioCitaIndependiente');
-    if (formCita) formCita.addEventListener('submit', manejarEnvioCitaIndependiente);
-});
-
-window.testAPICitas = async () => {
-    console.log('🧪 Test API Citas...');
-    const r = await llamarAPICitas('ping');
-    console.log('Resultado:', r);
-    return r;
-};
-
-console.log('✅ Script de Citas Independiente v3.3 READY');
-    </script>
-
+<script>
+function openAgendarCitaModal(){document.getElementById('modalAgendarCita').classList.remove('hidden')}
+function closeModalAgendarCita(){document.getElementById('modalAgendarCita').classList.add('hidden');const form=document.getElementById('formularioCitaIndependiente');if(form)form.reset();const contenedor=document.getElementById('horariosContainerCita');if(contenedor)contenedor.innerHTML='<div class="col-span-3 text-center text-gray-500 py-4"><i class="fas fa-calendar-day text-3xl mb-2"></i><p>Selecciona una fecha</p></div>'}
+const urlParams=new URLSearchParams(window.location.search);if(urlParams.get('sent')==='true'){const successDiv=document.getElementById('formSuccessMessage');if(successDiv){successDiv.classList.remove('hidden');setTimeout(()=>{document.getElementById('contacto').scrollIntoView({behavior:'smooth'})},500);window.history.replaceState({},document.title,window.location.pathname);setTimeout(()=>successDiv.classList.add('hidden'),8000)}}
+document.querySelectorAll('a[href^="#"]').forEach(anchor=>{anchor.addEventListener('click',function(e){e.preventDefault();const target=document.querySelector(this.getAttribute('href'));if(target)target.scrollIntoView({behavior:'smooth',block:'start'})})});
+const nav=document.querySelector('nav');window.addEventListener('scroll',()=>{nav.classList.toggle('shadow-lg',window.pageYOffset>100)});
+console.log('🦷 Sonrisa Norte v3.4 - Sistema principal cargado');
+const URL_API_CITAS='https://script.google.com/macros/s/AKfycbyK2jK89qGIwrVThhL22lmN-mHstD7yQdNfLGBxhMYU0DxsrTz94f-xWXzTnD79s6lp/exec';
+const HORARIOS_DISPONIBLES=['09:00','09:30','10:00','10:30','11:00','11:30','12:00','12:30','14:00','14:30','15:00','15:30','16:00','16:30','17:00','17:30','18:00'];
+async function llamarAPICitas(accion,datos={}){try{datos.accion=accion;console.log('📤 API Citas:',accion,datos);const respuesta=await fetch(URL_API_CITAS,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(datos),redirect:'follow'});if(!respuesta.ok)throw new Error('HTTP '+respuesta.status);const resultado=await respuesta.json();console.log('✅ Respuesta:',resultado);return resultado}catch(error){console.error('❌ Error:',error);return{exito:false,mensaje:'Error: '+error.message}}}
+function validarEmail(email){return/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)}
+function obtenerInfoNavegador(){const ua=navigator.userAgent;if(ua.indexOf('Chrome')>-1)return'Chrome';if(ua.indexOf('Safari')>-1)return'Safari';if(ua.indexOf('Firefox')>-1)return'Firefox';if(ua.indexOf('Edge')>-1)return'Edge';return'Otro'}
+function mostrarMensajeCita(mensaje,tipo='exito'){const elemento=document.getElementById('mensajeCita');if(!elemento)return;const claseAlerta=tipo==='exito'?'alert-success':'alert-error';const icono=tipo==='exito'?'check-circle':'exclamation-circle';elemento.innerHTML=`<div class="alert ${claseAlerta}"><i class="fas fa-${icono} mr-2"></i>${mensaje}</div>`;setTimeout(()=>elemento.innerHTML='',5000)}
+function formatearFecha(fecha){const date=new Date(fecha+'T00:00:00');return date.toLocaleDateString('es-MX',{year:'numeric',month:'long',day:'numeric'})}
+async function consultarHorariosDisponibles(fecha){const resultado=await llamarAPICitas('consultarHorariosOcupados',{fecha});if(resultado.exito){const ocupados=resultado.horarios||[];const libres=HORARIOS_DISPONIBLES.filter(h=>!ocupados.includes(h));return{exito:true,fecha,horariosOcupados:ocupados,horariosLibres:libres,totalLibres:libres.length}}return resultado}
+function seleccionarHorarioCita(horario,boton){document.querySelectorAll('.horario-btn:not(.disabled)').forEach(btn=>{btn.classList.remove('selected','border-blue-500','bg-blue-500','text-white');btn.classList.add('border-gray-300','text-gray-700')});boton.classList.add('selected','border-blue-500','bg-blue-500','text-white');boton.classList.remove('border-gray-300','text-gray-700');const campo=document.getElementById('horarioCitaSeleccionado');if(campo)campo.value=horario}
+function renderizarHorariosCita(fecha){const contenedor=document.getElementById('horariosContainerCita');if(!contenedor)return;if(!fecha){contenedor.innerHTML='<div class="col-span-3 text-center text-gray-500 py-4"><i class="fas fa-calendar-day text-3xl mb-2"></i><p>Selecciona una fecha</p></div>';return}contenedor.innerHTML='<div class="col-span-3 text-center py-4"><div class="spinner mx-auto"></div><p class="text-gray-600 mt-3">Consultando...</p></div>';consultarHorariosDisponibles(fecha).then(resultado=>{if(!resultado.exito){contenedor.innerHTML=`<div class="col-span-3 text-center text-red-500 py-4"><i class="fas fa-exclamation-triangle text-3xl mb-2"></i><p>${resultado.mensaje}</p></div>`;return}const ocupados=resultado.horariosOcupados||[];contenedor.innerHTML='';HORARIOS_DISPONIBLES.forEach(horario=>{const ocupado=ocupados.includes(horario);const boton=document.createElement('button');boton.type='button';if(ocupado){boton.className='horario-btn disabled px-4 py-3 border-2 border-red-200 rounded-xl text-sm font-semibold text-red-400 bg-red-50 cursor-not-allowed';boton.innerHTML=`${horario}<br><span class="text-xs">Ocupado</span>`;boton.disabled=true}else{boton.className='horario-btn px-4 py-3 border-2 border-gray-300 rounded-xl text-sm font-semibold text-gray-700 hover:border-blue-500 hover:bg-blue-50 transition';boton.innerHTML=`${horario}<br><span class="text-xs text-green-600">Disponible</span>`;boton.onclick=()=>seleccionarHorarioCita(horario,boton)}contenedor.appendChild(boton)});const resumen=document.createElement('div');resumen.className='col-span-3 mt-4 p-3 bg-blue-50 rounded-xl text-sm text-center';resumen.innerHTML=`<i class="fas fa-info-circle text-blue-500 mr-2"></i><span class="font-semibold">${resultado.totalLibres}</span> horarios disponibles`;contenedor.appendChild(resumen)})}
+async function guardarCitaIndependiente(form){const datos={nombre:form.nombreCita.value.trim(),email:form.emailCita.value.trim(),telefono:form.telefonoCita.value.trim(),servicio:form.servicioCita.value,fechaCita:form.fechaCitaInput.value,horarioCita:form.horarioCitaSeleccionado.value,motivo:form.motivoCita.value.trim(),navegador:obtenerInfoNavegador()};if(!datos.nombre||!datos.email||!datos.telefono)return{exito:false,mensaje:'Completa nombre, email y teléfono'};if(!datos.servicio||!datos.fechaCita||!datos.horarioCita)return{exito:false,mensaje:'Selecciona servicio, fecha y horario'};if(!validarEmail(datos.email))return{exito:false,mensaje:'Email inválido'};return await llamarAPICitas('guardarCita',datos)}
+async function manejarEnvioCitaIndependiente(e){e.preventDefault();const form=e.target;const btn=form.querySelector('button[type="submit"]');if(btn){btn.disabled=true;btn.innerHTML='<i class="fas fa-spinner fa-spin mr-2"></i>Guardando...'}const resultado=await guardarCitaIndependiente(form);if(btn){btn.disabled=false;btn.innerHTML='<i class="fas fa-check mr-2"></i>Confirmar Cita'}if(resultado.exito){const d=resultado.datos;mostrarMensajeCita(`✅ <strong>¡Cita agendada!</strong><br>📅 ${formatearFecha(d.fechaCita)}<br>🕐 ${d.horarioCita}<br>📧 ${d.email}<br><small>ID: ${d.id}</small>`,'exito');setTimeout(()=>{form.reset();document.getElementById('horariosContainerCita').innerHTML='';closeModalAgendarCita()},3000)}else{mostrarMensajeCita('❌ '+resultado.mensaje,'error')}}
+document.addEventListener('DOMContentLoaded',function(){console.log('🦷 Sistema Citas Independiente v3.4 cargado');const fechaCitaInput=document.getElementById('fechaCitaInput');if(fechaCitaInput){fechaCitaInput.min=new Date().toISOString().split('T')[0];fechaCitaInput.addEventListener('change',function(){renderizarHorariosCita(this.value);const campo=document.getElementById('horarioCitaSeleccionado');if(campo)campo.value=''})}const formCita=document.getElementById('formularioCitaIndependiente');if(formCita)formCita.addEventListener('submit',manejarEnvioCitaIndependiente)});
+window.testAPICitas=async()=>{console.log('🧪 Test API Citas...');const r=await llamarAPICitas('ping');console.log('Resultado:',r);return r};
+console.log('✅ Sonrisa Norte v3.4 READY');
+</script>
 </body>
 </html>
